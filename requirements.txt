@@ -1,1 +1,2 @@
 flexicon==0.1.0
+click==6.7
