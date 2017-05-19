@@ -33,7 +33,7 @@ def lex(text):
     try:
         return EXPRESSION_LEXER.lex(text)
     except FlexiconError as exc:
-        return ('ERROR', exc)
+        return ('ERROR', str(exc))
 
 
 class MetaFunction:
