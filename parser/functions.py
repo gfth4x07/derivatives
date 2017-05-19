@@ -64,9 +64,3 @@ class Identity(MetaFunction):
         if not(len(self.body) == 1 and self.body[0][0] == 'VARIABLE'):
             raise ValueError('It is not an identity function')
         return hash('IDENTITY FUNCTION')
-
-
-#
-#
-# if __name__ == '__main__':
-#     print(lex(input('f(x) = ')))
