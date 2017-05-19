@@ -46,6 +46,26 @@ class MetaFunction:
 
     def __eq__(self, function):
         return hash(self) == hash(function)
+
+
+class Constant(MetaFunction):
+
+    def __hash__(self):
+
+        if not(len(self.body) == 1 and self.body[0][0] == 'NUMBER'):
+            raise ValueError('It is not a constant function')
+        return hash('CONSTANT FUNCTION')
+
+
+class Identity(MetaFunction):
+
+    def __hash__(self):
+
+        if not(len(self.body) == 1 and self.body[0][0] == 'VARIABLE'):
+            raise ValueError('It is not an identity function')
+        return hash('IDENTITY FUNCTION')
+
+
 #
 #
 # if __name__ == '__main__':

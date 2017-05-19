@@ -93,3 +93,27 @@ def test_meta_function_as_dict_key():
     function_map = {function_x_plus_2: 'function_x_plus_2'}
 
     assert function_map[functions.MetaFunction(functions.lex('f(x)=x + 2'))]
+
+
+@pytest.mark.parametrize('metafunction,test_input,expected', [
+    (functions.Constant, 'f(x) = 1', 'CONSTANT FUNCTION'),
+    (functions.Identity, 'f(x) = x', 'IDENTITY FUNCTION')
+])
+def test_function_when_input_does_represent_expected_one(metafunction, test_input, expected):  # noqa
+
+    function_x = metafunction(functions.lex(test_input))
+
+    assert hash(function_x) == hash(expected)
+
+
+@pytest.mark.parametrize('metafunction,test_input,expected', [
+    (functions.Constant, 'f(x) = x', 'a constant function'),
+    (functions.Identity, 'f(x) = 1', 'an identity function')
+])
+def test_function_when_input_does_not_represent_expected_one(metafunction, test_input, expected):  # noqa
+
+    function_x = metafunction(functions.lex(test_input))
+    with pytest.raises(ValueError) as e_info:
+        hash(function_x)
+
+    assert str(e_info.value) == 'It is not {}'.format(expected)
