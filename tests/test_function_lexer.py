@@ -68,5 +68,5 @@ def test_number_is_handle_as_decimal():
     ('f(x) = sqrt(x)',
      [('SQRT',), ('OPAREN',), ('VARIABLE', 'x'), ('CPAREN',)]),
 ])
-def test_simples_functions(function, expected):
+def test_simple_functions(function, expected):
     assert function_lexer.lex(function) == expected
