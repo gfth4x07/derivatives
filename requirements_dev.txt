@@ -1,0 +1,4 @@
+flake8==3.3.0
+hypothesis==3.8.5
+pylama==7.3.3
+pytest==3.0.7
