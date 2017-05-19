@@ -2,7 +2,7 @@ import decimal
 
 import pytest
 
-from parser import function_lexer
+from parser import functions
 
 
 @pytest.mark.parametrize('test_input, expected_tag', [
@@ -26,25 +26,25 @@ from parser import function_lexer
     ('foo', 'VARIABLE'),
 ])
 def test_all_tags(test_input, expected_tag):
-    assert function_lexer.lex(test_input)[0][0] == expected_tag
+    assert functions.lex(test_input)[0][0] == expected_tag
 
 
 def test_empty():
-    assert function_lexer.lex('') == []
+    assert functions.lex('') == []
 
 
 def test_spaces():
-    assert function_lexer.lex('    ') == []
+    assert functions.lex('    ') == []
 
 
 def test_optional_function_name():
-    assert function_lexer.lex('f(x) = ') == []
-    assert function_lexer.lex('g(x)=') == []
+    assert functions.lex('f(x) = ') == []
+    assert functions.lex('g(x)=') == []
 
 
 def test_number_is_handle_as_decimal():
 
-    result = function_lexer.lex('f(x) = 1')
+    result = functions.lex('f(x) = 1')
 
     assert len(result) == 1
     assert isinstance(result[0], tuple)
@@ -69,4 +69,4 @@ def test_number_is_handle_as_decimal():
      [('SQRT',), ('OPAREN',), ('VARIABLE', 'x'), ('CPAREN',)]),
 ])
 def test_simple_functions(function, expected):
-    assert function_lexer.lex(function) == expected
+    assert functions.lex(function) == expected
