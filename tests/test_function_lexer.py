@@ -2,7 +2,7 @@ import decimal
 
 import pytest
 
-from interpreter import function_lexer
+from parser import function_lexer
 
 
 @pytest.mark.parametrize('test_input, expected_tag', [
