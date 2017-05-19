@@ -36,5 +36,17 @@ def lex(text):
         return ('ERROR', exc)
 
 
+class MetaFunction:
+
+    def __init__(self, body):
+        self.body = body
+
+    def __hash__(self):
+        return hash(tuple(self.body))
+
+    def __eq__(self, function):
+        return hash(self) == hash(function)
+#
+#
 # if __name__ == '__main__':
-#    print(lex(input()))
+#     print(lex(input('f(x) = ')))

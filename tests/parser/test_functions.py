@@ -70,3 +70,26 @@ def test_number_is_handle_as_decimal():
 ])
 def test_simple_functions(function, expected):
     assert functions.lex(function) == expected
+
+
+def test_meta_function_object_dunder_hash():
+
+    function_x_plus_2 = functions.MetaFunction(functions.lex('f(x)=x + 2'))
+
+    assert hash(function_x_plus_2) == hash(tuple(functions.lex('f(x)=x + 2')))
+
+
+def test_meta_function_dunder_equals():
+
+    function_x_plus_2 = functions.MetaFunction(functions.lex('f(x)=x + 2'))
+
+    assert function_x_plus_2.body == functions.lex('f(x)=x + 2')
+
+
+def test_meta_function_as_dict_key():
+
+    function_x_plus_2 = functions.MetaFunction(functions.lex('f(x)=x + 2'))
+
+    function_map = {function_x_plus_2: 'function_x_plus_2'}
+
+    assert function_map[functions.MetaFunction(functions.lex('f(x)=x + 2'))]
