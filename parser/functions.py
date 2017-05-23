@@ -8,8 +8,7 @@ from flexicon import FlexiconError, Lexer
 
 EXPRESSION_LEXER = Lexer().simple(
     (r'[ \t]+', lambda: None),
-    #(r'(\w?  \w+\(\w+\)\s*=    lambda fun, var: ('FUNCTION', fun, var)),
-    (r'.*\w?\=\w?', lambda: None),  # e.g:'f(x) = '
+    (r'[a-zA-Z]+ *\( *[a-zA-Z] *(, *[a-zA-Z] *)*\)\s*=', lambda: None),  # e.g:'f(x) = ' or 'f( x, y, z) ='
     (r'\+', lambda: ('ADD',)),
     (r'\/', lambda: ('DIVIDE',)),
     (r'\-', lambda: ('SUBTRACT',)),
